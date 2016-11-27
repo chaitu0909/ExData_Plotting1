@@ -1,0 +1,7 @@
+housePower<-read.table("household_power_consumption.txt", sep = ";", strip.white=TRUE, stringsAsFactors=FALSE, dec = ".")
+housePower$V1<-as.Date(housePower$V1, "%d/%m/%Y")
+requiredData<-subset(housePower, V1>=as.Date("2007-02-01") & V1<=as.Date("2007-02-02"))
+png("plot1.png", width=480, height=480)
+gap<-as.numeric(requiredData$V3)
+hist(gap, col = "red", xlab = "Global Active Power (kilowatts)", main = "Global Active Power")
+dev.off()
